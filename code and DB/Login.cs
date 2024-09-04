@@ -13,9 +13,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ABC_Car_Traders
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }
@@ -59,24 +59,40 @@ namespace ABC_Car_Traders
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
             {
+                // Updated query to select UserType along with checking credentials
+                string selectQuery = "SELECT UserType FROM dbo.Users WHERE Username=@Username AND Password=@Password";
 
-                string selectQuery = "SELECT COUNT(*) FROM dbo.Users WHERE Username=@Username AND Password=@Password";
-                using (SqlCommand sqlCommand = new SqlCommand(selectQuery, connection)) 
+                using (SqlCommand sqlCommand = new SqlCommand(selectQuery, connection))
                 {
                     sqlCommand.Parameters.AddWithValue("@Username", txtbox1.Text);
                     sqlCommand.Parameters.AddWithValue("@Password", txtbox2.Text);
-
 
                     try
                     {
                         connection.Open();
 
-                        // Use ExecuteScalar() for SELECT COUNT(*) query
-                        int userCount = (int)sqlCommand.ExecuteScalar();
+                        // ExecuteScalar will return the UserType as a string if credentials are correct
+                        object result = sqlCommand.ExecuteScalar();
 
-                        if (userCount > 0)
+                        if (result != null)
                         {
+                            string UserType = result.ToString();
+
                             MessageBox.Show("Login successful", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Navigate to the respective home form based on the UserType
+                            this.Hide();  // Hide the current login form
+
+                            if (UserType == "admin")
+                            {
+                                adminhome AdminHome = new adminhome();
+                                AdminHome.Show();
+                            }
+                            else if (UserType == "customer")
+                            {
+                                customerhome CustomerHome = new customerhome();
+                                CustomerHome.Show();
+                            }
                         }
                         else
                         {
@@ -91,13 +107,10 @@ namespace ABC_Car_Traders
                     {
                         MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-
-
                 }
-
             }
         }
+
 
 
         private void button2_Click(object sender, EventArgs e)
