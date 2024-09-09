@@ -65,6 +65,11 @@
     <Compile Include="customerhome.Designer.cs">
       <DependentUpon>customerhome.cs</DependentUpon>
     </Compile>
+    <Compile Include="ds_car.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_car.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +169,17 @@
     <EmbeddedResource Include="uc_reports.resx">
       <DependentUpon>uc_reports.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ds_car.xsc">
+      <DependentUpon>ds_car.xsd</DependentUpon>
+    </None>
+    <None Include="ds_car.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_car.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ds_car.xss">
+      <DependentUpon>ds_car.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

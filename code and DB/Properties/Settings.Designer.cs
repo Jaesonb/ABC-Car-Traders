@@ -33,5 +33,16 @@ namespace ABC_Car_Traders.Properties {
                 return ((string)(this["connString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=AGENT007\\SQLEXPRESS06;Initial Catalog=\"ABC Car Traders\";Integrated Se" +
+            "curity=True;Encrypt=False")]
+        public string ABC_Car_TradersConnectionString {
+            get {
+                return ((string)(this["ABC_Car_TradersConnectionString"]));
+            }
+        }
     }
 }
