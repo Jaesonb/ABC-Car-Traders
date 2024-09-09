@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button2 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ds_carparts = new ABC_Car_Traders.ds_carparts();
+            this.dscarpartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds_carparts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarpartsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
@@ -44,14 +50,6 @@
             this.button2.Text = "Order";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel1.Location = new System.Drawing.Point(21, 198);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(428, 153);
-            this.panel1.TabIndex = 15;
             // 
             // button1
             // 
@@ -78,17 +76,40 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "PartName";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.DataSource = this.dscarpartsBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(19, 199);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(410, 150);
+            this.dataGridView1.TabIndex = 15;
+            // 
+            // ds_carparts
+            // 
+            this.ds_carparts.DataSetName = "ds_carparts";
+            this.ds_carparts.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dscarpartsBindingSource
+            // 
+            this.dscarpartsBindingSource.DataSource = this.ds_carparts;
+            this.dscarpartsBindingSource.Position = 0;
+            // 
             // uc_customercarparts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Name = "uc_customercarparts";
             this.Size = new System.Drawing.Size(468, 365);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds_carparts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarpartsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,9 +117,11 @@
 
         #endregion
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource dscarpartsBindingSource;
+        private ds_carparts ds_carparts;
     }
 }

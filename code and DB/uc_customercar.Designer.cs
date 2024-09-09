@@ -28,20 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.components = new System.ComponentModel.Container();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ds_car = new ABC_Car_Traders.ds_car();
+            this.dscarBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds_car)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel1.Location = new System.Drawing.Point(23, 186);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(428, 153);
-            this.panel1.TabIndex = 20;
             // 
             // button2
             // 
@@ -78,28 +76,52 @@
             this.textBox1.Size = new System.Drawing.Size(112, 20);
             this.textBox1.TabIndex = 16;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.DataSource = this.dscarBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(15, 208);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(435, 137);
+            this.dataGridView1.TabIndex = 20;
+            // 
+            // ds_car
+            // 
+            this.ds_car.DataSetName = "ds_car";
+            this.ds_car.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dscarBindingSource
+            // 
+            this.dscarBindingSource.DataSource = this.ds_car;
+            this.dscarBindingSource.Position = 0;
+            // 
             // uc_customercar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Name = "uc_customercar";
             this.Size = new System.Drawing.Size(476, 365);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds_car)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource dscarBindingSource;
+        private ds_car ds_car;
     }
 }

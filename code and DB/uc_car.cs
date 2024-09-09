@@ -17,11 +17,12 @@ namespace ABC_Car_Traders
         public uc_car()
         {
             InitializeComponent();
+            this.Load += new System.EventHandler(this.uc_car_Load);  // Attach the Load event handler
         }
 
         private void uc_car_Load(object sender, EventArgs e)
         {
-
+            showdata();  // Load data into the DataGridView when the form loads
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -41,87 +42,98 @@ namespace ABC_Car_Traders
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Create a connection string and use it within a using block
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
             {
                 try
                 {
-                    if (textBox1.Text == "")
-                    {
-                        MessageBox.Show("Please, Enter Car ID.","Try Again", MessageBoxButtons.OK,MessageBoxIcon.Information);
-                        textBox1.Focus();
-
-                    }
-                    else if (textBox2.Text == "")
+                    // Validate the input fields
+                    if (string.IsNullOrWhiteSpace(textBox2.Text))
                     {
                         MessageBox.Show("Please, Enter Car Name", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox2.Focus();
-
+                        return;
                     }
-                    else if (textBox3.Text == "")
+                    else if (string.IsNullOrWhiteSpace(textBox3.Text))
                     {
                         MessageBox.Show("Please, Enter Car Brand", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox3.Focus();
+                        return;
                     }
-                    else if (textBox4.Text == "")
+                    else if (string.IsNullOrWhiteSpace(textBox4.Text))
                     {
                         MessageBox.Show("Please, Enter Car Model Year", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox4.Focus();
+                        return;
                     }
-                    else if (textBox5.Text == "")
+                    else if (string.IsNullOrWhiteSpace(textBox5.Text))
                     {
                         MessageBox.Show("Please, Enter Car Price", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox5.Focus();
+                        return;
                     }
-                    else 
+
+                    // Open the connection inside the using block
+                    connection.Open();
+
+                    // Parameterized SQL query to insert data into the database
+                    string insertQuery = "INSERT INTO dbo.Cars (CarName, Brand, ModelYear, Price) " +
+                                         "VALUES (@CarName, @Brand, @ModelYear, @Price)";
+
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, connection))
                     {
-                        SqlConnection con = new SqlConnection(Properties.Settings.Default.connString);
+                        // Add parameters to avoid SQL injection
+                        cmd.Parameters.AddWithValue("@CarName", textBox2.Text);
+                        cmd.Parameters.AddWithValue("@Brand", textBox3.Text);
+                        cmd.Parameters.AddWithValue("@ModelYear", textBox4.Text);
+                        cmd.Parameters.AddWithValue("@Price", textBox5.Text);
 
-                        con.Open();
+                        // Execute the query
+                        cmd.ExecuteNonQuery();
+                    }
 
-                        string insertQuery = "INSERT INTO dbo.Cars (CarID, CarName, Brand, ModelYear, Price) VALUES('"+textBox1.Text+ "','" + textBox2.Text + "', '"+textBox3.Text+ "', '"+textBox4.Text+ "', '"+textBox5.Text+ "' )";
+                    // Check the inserted record by selecting the max CarID
+                    string selectQuery = "SELECT MAX(CarID) FROM dbo.Cars";
 
-                        SqlCommand cmd = new SqlCommand(insertQuery, con);
-
-                        string str1 = "Select max(CarID) from dbo.Cars ";
-
-                        SqlCommand cmd2 = new SqlCommand(str1, con);
-
-                        SqlDataReader da = cmd2.ExecuteReader();
-
-                        if (da.Read())
-                        { 
-                            MessageBox.Show("Car Information Inserted Successfully ...! ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            clear();
-
+                    using (SqlCommand cmd2 = new SqlCommand(selectQuery, connection))
+                    using (SqlDataReader reader = cmd2.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            MessageBox.Show("Car Information Inserted Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            clear();  // Clear all input fields
+                            showdata();  // Refresh the data displayed in the DataGridView
                         }
                         else
                         {
-                            MessageBox.Show("Car Information Inserted Unuccessfully. Please Try again! ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Car Information Insertion Failed. Please Try Again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
-
-
                     }
-
                 }
-                catch (Exception ex) {
-
-                    MessageBox.Show(ex.Message);
-                
-                    }
-            }
-
-            public void clear()
-            {
-
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
-                textBox4.Clear();
-                textBox5.Clear();
-
+                catch (SqlException sqlEx) // Catch SQL-specific exceptions
+                {
+                    MessageBox.Show($"Database error occurred: {sqlEx.Message}", "SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex) // Catch all other exceptions
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+
+
+        private void clear()
+        {
+            // Clear all text boxes
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
+
+            // Set focus back to the first input field
+            textBox2.Focus();
+        }
+
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
@@ -150,150 +162,205 @@ namespace ABC_Car_Traders
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Use the connection string in a using block to ensure proper disposal
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
             {
                 try
                 {
-                    if (textBox1.Text == "")
-                    {
-                        MessageBox.Show("Please, Enter Car ID.", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        textBox1.Focus();
-
-                    }
-                    else if (textBox2.Text == "")
+                    // Validate input fields
+                    if (string.IsNullOrWhiteSpace(textBox2.Text))
                     {
                         MessageBox.Show("Please, Enter Car Name", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox2.Focus();
-
+                        return;
                     }
-                    else if (textBox3.Text == "")
+                    else if (string.IsNullOrWhiteSpace(textBox3.Text))
                     {
                         MessageBox.Show("Please, Enter Car Brand", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox3.Focus();
+                        return;
                     }
-                    else if (textBox4.Text == "")
+                    else if (string.IsNullOrWhiteSpace(textBox4.Text))
                     {
                         MessageBox.Show("Please, Enter Car Model Year", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox4.Focus();
+                        return;
                     }
-                    else if (textBox5.Text == "")
+                    else if (string.IsNullOrWhiteSpace(textBox5.Text))
                     {
                         MessageBox.Show("Please, Enter Car Price", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         textBox5.Focus();
+                        return;
                     }
-                    else
+
+                    // Open the connection inside the using block
+                    connection.Open();
+
+                    // Use parameterized query to prevent SQL injection
+                    string updateQuery = "UPDATE dbo.Cars SET CarName = @CarName, Brand = @Brand, " +
+                                         "ModelYear = @ModelYear, Price = @Price WHERE CarName = @CarName";
+
+                    using (SqlCommand cmd = new SqlCommand(updateQuery, connection))
                     {
-                        SqlConnection con = new SqlConnection(Properties.Settings.Default.connString);
+                        // Add parameters to the query to avoid SQL injection
+                        cmd.Parameters.AddWithValue("@CarName", textBox2.Text);
+                        cmd.Parameters.AddWithValue("@Brand", textBox3.Text);
+                        cmd.Parameters.AddWithValue("@ModelYear", textBox4.Text);
+                        cmd.Parameters.AddWithValue("@Price", textBox5.Text);
 
-                        con.Open();
+                        // Execute the query
+                        int rowsAffected = cmd.ExecuteNonQuery();
 
-                        string updateQuery = " Update dbo.Cars Set CarID =  '"+textBox1.Text+ "',  CarName = '"+textBox2.Text+ "' ,  Brand = '"+textBox3.Text+ "' , ModelYear = '"+textBox4.Text+ "', Price = '"+textBox5.Text+ "' Where CarID =  '"+textBox1.Text+ "' ";
-
-                        SqlCommand cmd = new SqlCommand(updateQuery, con);
-
-                        string str1 = "Select max(CarID) from dbo.Cars ";
-
-                        SqlCommand cmd2 = new SqlCommand(str1, con);
-
-                        SqlDataReader da = cmd2.ExecuteReader();
-
-                        if (da.Read())
+                        // If rows were affected, the update was successful
+                        if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Car Information Updated Successfully ...! ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            clear();
-
+                            MessageBox.Show("Car Information Updated Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            clear();  // Clear all input fields
+                            showdata();  // Refresh the data displayed in the DataGridView
                         }
                         else
                         {
-                            MessageBox.Show("Car Information Updated Unuccessfully. Please Try Again! ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Car Information Update Failed. Please Try Again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
-
-
                     }
-
                 }
-                catch (Exception ex)
+                catch (SqlException sqlEx) // Catch SQL-specific exceptions
                 {
-
-                    MessageBox.Show(ex.Message);
-
+                    MessageBox.Show($"Database error occurred: {sqlEx.Message}", "SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex) // Catch other exceptions
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
+
+
+
         private void button3_Click(object sender, EventArgs e)
+        {
+            // Use the connection string in a using block to ensure proper disposal
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
+            {
+                try
+                {
+                    // Validate input fields
+                    if (string.IsNullOrWhiteSpace(textBox2.Text))
+                    {
+                        MessageBox.Show("Please, Enter Car ID.", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        textBox2.Focus();
+                        return;
+                    }
+
+                    // Open the connection
+                    connection.Open();
+
+                    // Use parameterized query to prevent SQL injection
+                    string deleteQuery = "DELETE FROM dbo.Cars WHERE CarName = @CarName";
+
+                    using (SqlCommand cmd = new SqlCommand(deleteQuery, connection))
+                    {
+                        // Add the CarName parameter to avoid SQL injection
+                        cmd.Parameters.AddWithValue("@CarName", textBox2.Text);
+
+                        // Execute the query and check how many rows were affected
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // If rows were affected, the deletion was successful
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Car Information Deleted Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            clear();  // Clear input fields
+                            showdata();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Car Information Not Found. Please Try Again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                catch (SqlException sqlEx) // Handle SQL-specific exceptions
+                {
+                    MessageBox.Show($"Database error occurred: {sqlEx.Message}", "SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex) // Handle general exceptions
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            showdata();
+        }
+
+        private void showdata()
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connString))
             {
                 try
                 {
-                    if (textBox1.Text == "")
+                    connection.Open();
+
+                    string selectQuery = "SELECT * FROM dbo.Cars";
+
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, connection))
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
-                        MessageBox.Show("Please, Enter Car ID.", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        textBox1.Focus();
-
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dataGridView1.DataSource = dt;
                     }
-                    else if (textBox2.Text == "")
-                    {
-                        MessageBox.Show("Please, Enter Car Name", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        textBox2.Focus();
-
-                    }
-                    else if (textBox3.Text == "")
-                    {
-                        MessageBox.Show("Please, Enter Car Brand", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        textBox3.Focus();
-                    }
-                    else if (textBox4.Text == "")
-                    {
-                        MessageBox.Show("Please, Enter Car Model Year", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        textBox4.Focus();
-                    }
-                    else if (textBox5.Text == "")
-                    {
-                        MessageBox.Show("Please, Enter Car Price", "Try Again", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        textBox5.Focus();
-                    }
-                    else
-                    {
-                        SqlConnection con = new SqlConnection(Properties.Settings.Default.connString);
-
-                        con.Open();
-
-                        string updateQuery = " Delete FROM  dbo.Cars Set  Where CarID =  '" + textBox1.Text + "' ";
-
-                        SqlCommand cmd = new SqlCommand(updateQuery, con);
-
-                        string str1 = "Select max(CarID) from dbo.Cars ";
-
-                        SqlCommand cmd2 = new SqlCommand(str1, con);
-
-                        SqlDataReader da = cmd2.ExecuteReader();
-
-                        if (da.Read())
-                        {
-                            MessageBox.Show("Car Information Deleted Successfully ...! ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            clear();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Car Information Deleted Unuccessfully. Please Try Again! ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-
-
-
-                    }
-
+                }
+                catch (SqlException sqlEx)
+                {
+                    MessageBox.Show($"Database error occurred: {sqlEx.Message}", "SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-
-                    MessageBox.Show(ex.Message);
-
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                int index;
+
+                index = e.RowIndex;
+
+                DataGridViewRow row = dataGridView1.Rows[index];
+
+                textBox2.Text = row.Cells[1].Value.ToString();
+                textBox3.Text = row.Cells[2].Value.ToString();
+                textBox4.Text = row.Cells[3].Value.ToString();
+                textBox5.Text = row.Cells[4].Value.ToString();
+
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            
+            }
+
+        }
     }
+
 }

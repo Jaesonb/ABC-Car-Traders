@@ -70,6 +70,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ds_car.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ds_carparts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_carparts.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_order.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_order.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_orderdetails.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_orderdetails.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ds_users.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_users.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +199,50 @@
     </None>
     <None Include="ds_car.xss">
       <DependentUpon>ds_car.xsd</DependentUpon>
+    </None>
+    <None Include="ds_carparts.xsc">
+      <DependentUpon>ds_carparts.xsd</DependentUpon>
+    </None>
+    <None Include="ds_carparts.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_carparts.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ds_carparts.xss">
+      <DependentUpon>ds_carparts.xsd</DependentUpon>
+    </None>
+    <None Include="ds_order.xsc">
+      <DependentUpon>ds_order.xsd</DependentUpon>
+    </None>
+    <None Include="ds_order.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_order.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ds_order.xss">
+      <DependentUpon>ds_order.xsd</DependentUpon>
+    </None>
+    <None Include="ds_orderdetails.xsc">
+      <DependentUpon>ds_orderdetails.xsd</DependentUpon>
+    </None>
+    <None Include="ds_orderdetails.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_orderdetails.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ds_orderdetails.xss">
+      <DependentUpon>ds_orderdetails.xsd</DependentUpon>
+    </None>
+    <None Include="ds_users.xsc">
+      <DependentUpon>ds_users.xsd</DependentUpon>
+    </None>
+    <None Include="ds_users.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_users.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ds_users.xss">
+      <DependentUpon>ds_users.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

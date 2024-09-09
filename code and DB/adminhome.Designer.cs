@@ -55,7 +55,7 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(1, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(139, 365);
             this.panel1.TabIndex = 0;
@@ -63,7 +63,7 @@
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(2, 2);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(20, 61);
             this.panel2.TabIndex = 1;
@@ -71,7 +71,7 @@
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(2, 332);
-            this.button6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(134, 31);
             this.button6.TabIndex = 5;
@@ -82,7 +82,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(2, 266);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(134, 61);
             this.button5.TabIndex = 4;
@@ -93,7 +93,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(2, 200);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(134, 61);
             this.button4.TabIndex = 3;
@@ -104,7 +104,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(2, 134);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(134, 61);
             this.button3.TabIndex = 2;
@@ -115,7 +115,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(2, 68);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(134, 61);
             this.button2.TabIndex = 1;
@@ -126,7 +126,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(2, 2);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(134, 61);
             this.button1.TabIndex = 0;
@@ -168,6 +168,7 @@
             this.uc_carparts1.Name = "uc_carparts1";
             this.uc_carparts1.Size = new System.Drawing.Size(463, 365);
             this.uc_carparts1.TabIndex = 5;
+            this.uc_carparts1.Load += new System.EventHandler(this.uc_carparts1_Load);
             // 
             // adminhome
             // 
@@ -180,7 +181,7 @@
             this.Controls.Add(this.uc_customerorder1);
             this.Controls.Add(this.uc_customer1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "adminhome";
             this.Text = "Home";
             this.panel1.ResumeLayout(false);

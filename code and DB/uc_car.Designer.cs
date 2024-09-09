@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,23 +39,31 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.ds_car = new ABC_Car_Traders.ds_car();
+            this.dscarBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dscarBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.carIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.brandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modelYearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dscarBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.carsTableAdapter = new ABC_Car_Traders.ds_carTableAdapters.CarsTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.ds_car)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarBindingSource2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(17, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(129, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(201, 57);
+            this.label1.Location = new System.Drawing.Point(138, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 1;
@@ -64,7 +72,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(168, 23);
+            this.textBox2.Location = new System.Drawing.Point(100, 23);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(129, 20);
             this.textBox2.TabIndex = 2;
@@ -73,7 +81,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(371, 57);
+            this.label2.Location = new System.Drawing.Point(313, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 3;
@@ -81,7 +89,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(320, 23);
+            this.textBox3.Location = new System.Drawing.Point(266, 23);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(129, 20);
             this.textBox3.TabIndex = 4;
@@ -145,13 +153,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(28, 215);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(421, 135);
-            this.panel1.TabIndex = 11;
-            // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(266, 113);
@@ -160,22 +161,90 @@
             this.textBox5.TabIndex = 12;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
-            // label5
+            // ds_car
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(60, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Car ID";
+            this.ds_car.DataSetName = "ds_car";
+            this.ds_car.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dscarBindingSource
+            // 
+            this.dscarBindingSource.DataSource = this.ds_car;
+            this.dscarBindingSource.Position = 0;
+            // 
+            // dscarBindingSource1
+            // 
+            this.dscarBindingSource1.DataSource = this.ds_car;
+            this.dscarBindingSource1.Position = 0;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.carIDDataGridViewTextBoxColumn,
+            this.carNameDataGridViewTextBoxColumn,
+            this.brandDataGridViewTextBoxColumn,
+            this.modelYearDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.carsBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(18, 233);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(431, 116);
+            this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            // 
+            // carIDDataGridViewTextBoxColumn
+            // 
+            this.carIDDataGridViewTextBoxColumn.DataPropertyName = "CarID";
+            this.carIDDataGridViewTextBoxColumn.HeaderText = "CarID";
+            this.carIDDataGridViewTextBoxColumn.Name = "carIDDataGridViewTextBoxColumn";
+            this.carIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // carNameDataGridViewTextBoxColumn
+            // 
+            this.carNameDataGridViewTextBoxColumn.DataPropertyName = "CarName";
+            this.carNameDataGridViewTextBoxColumn.HeaderText = "CarName";
+            this.carNameDataGridViewTextBoxColumn.Name = "carNameDataGridViewTextBoxColumn";
+            // 
+            // brandDataGridViewTextBoxColumn
+            // 
+            this.brandDataGridViewTextBoxColumn.DataPropertyName = "Brand";
+            this.brandDataGridViewTextBoxColumn.HeaderText = "Brand";
+            this.brandDataGridViewTextBoxColumn.Name = "brandDataGridViewTextBoxColumn";
+            // 
+            // modelYearDataGridViewTextBoxColumn
+            // 
+            this.modelYearDataGridViewTextBoxColumn.DataPropertyName = "ModelYear";
+            this.modelYearDataGridViewTextBoxColumn.HeaderText = "ModelYear";
+            this.modelYearDataGridViewTextBoxColumn.Name = "modelYearDataGridViewTextBoxColumn";
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            // 
+            // carsBindingSource
+            // 
+            this.carsBindingSource.DataMember = "Cars";
+            this.carsBindingSource.DataSource = this.ds_car;
+            // 
+            // dscarBindingSource2
+            // 
+            this.dscarBindingSource2.DataSource = this.ds_car;
+            this.dscarBindingSource2.Position = 0;
+            // 
+            // carsTableAdapter
+            // 
+            this.carsTableAdapter.ClearBeforeFill = true;
             // 
             // uc_car
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -186,18 +255,21 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
             this.Name = "uc_car";
             this.Size = new System.Drawing.Size(461, 365);
             this.Load += new System.EventHandler(this.uc_car_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ds_car)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dscarBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
@@ -208,8 +280,18 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.BindingSource dscarBindingSource;
+        private ds_car ds_car;
+        private System.Windows.Forms.BindingSource dscarBindingSource1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn brandDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modelYearDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource carsBindingSource;
+        private System.Windows.Forms.BindingSource dscarBindingSource2;
+        private ds_carTableAdapters.CarsTableAdapter carsTableAdapter;
     }
 }

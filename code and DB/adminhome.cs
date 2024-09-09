@@ -59,7 +59,7 @@ namespace ABC_Car_Traders
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -68,6 +68,11 @@ namespace ABC_Car_Traders
         }
 
         private void uc_car1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uc_carparts1_Load(object sender, EventArgs e)
         {
 
         }

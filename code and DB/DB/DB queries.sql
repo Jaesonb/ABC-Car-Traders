@@ -59,8 +59,6 @@ SELECT * FROM [ABC Car Traders].[dbo].[Users]
 
 SELECT * FROM [ABC Car Traders].[dbo].[Cars]
 
-SELECT * FROM [ABC Car Traders].[dbo].[CarParts]
-
 
 UPDATE dbo.Users
 SET UserType = 'admin'
